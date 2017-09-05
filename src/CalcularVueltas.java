@@ -122,7 +122,7 @@ public class CalcularVueltas {
 		
 		float[] billetes_monedas = {50f, 20f, 10f, 5f, 2f, 1f, 0.5f, 0.2f, 0.1f, 0.05f, 0.02f, 0.01f};
 		for (int i = 0; i < billetes_monedas.length; i++) {
-			
+			//TODO hacerlo mas simple
 		}
 		
 		
