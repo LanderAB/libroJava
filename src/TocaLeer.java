@@ -22,7 +22,6 @@ public class TocaLeer {
 	 * @return int aleatorio
 	 */
 	public static int generaNumeroAleatorio(int max){
-		//TODO aqui falta implementar logica
 		int numAleatorio = (int)(Math.random() * max);
 		return numAleatorio;
 	}
