@@ -79,13 +79,13 @@ public class JugandoConString {
 		}
 		
 		System.out.println("El numero de veces que aparece 'at' es de : " + contadorAt + " veces");
-		
-		
-		for(int i = 0; i < aVocales.length; i++) {
+		int cantidad = UtilidadesString.buscarPalabra(lorem, letras);
+		System.out.println("Numero de veces con metodo : " + cantidad);
+/*		for(int i = 0; i < aVocales.length; i++) {
 			if(aVocales[i] == 'a' || aVocales[i] == 'A') {
 				aVocales[i] = 4;
 			}
-		}
+		}*/
 		
 	}
 	
