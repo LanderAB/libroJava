@@ -64,4 +64,12 @@ public class Participante {
 	public String getLinkGitHub() {
 		return "https://github.com/" + this.usuarioGit;
 	}
+
+	//recomendable poner siempre
+	public String toString() {
+		return "Participante [nombre=" + nombre + ", usuarioGit=" + usuarioGit + ", email=" + email + ", trabajador="
+				+ trabajador + "]";
+	}
+	
+	
 }
