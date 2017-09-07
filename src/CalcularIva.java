@@ -6,7 +6,7 @@ public class CalcularIva {
 		
 		System.out.println("Calculadora del IVA ");
 		System.out.println("---------------------");
-		String letra = "k";
+		char letra = 'k';
 		do {
 			System.out.println("Por favor dame el importe en euros");
 			
@@ -15,11 +15,14 @@ public class CalcularIva {
 			float importe = src.nextFloat();
 			
 			System.out.println("El IVA repercutido es : " + importe * 0.21);
-
-			System.out.println("Quieres volver a calcular otro importe? Pulsa 's' para Seguir, 'n' para Parar");
-			letra = src.next();
+			while(letra != 's' && letra != 'n') {
+				System.out.println("Quieres volver a calcular otro importe? Pulsa 's' para Seguir, 'n' para Parar");
+				String opcion = src.next();
+				letra = opcion.charAt(0);
+			}
 			
-		} while ("s".equals(letra));
+			
+		} while ('s' == letra);
 		
 		System.out.println("---------------------------");
 		System.out.println("Adios hasta la proxima");
