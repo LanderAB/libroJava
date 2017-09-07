@@ -16,8 +16,10 @@ public class JuegoNumero {
 		do {
 			int numeroAdivinar = (int) (Math.random() * 10 + 1);
 			seguir = false;
+			
 			//Mientras tenga vidas que siga jugando
 			while (contadorVidas > 0) {
+				
 				// Bucle do while para introducir el numero correcto
 				do {
 					try {
