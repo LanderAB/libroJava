@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CalcularIva {
@@ -20,8 +21,12 @@ public class CalcularIva {
 					src = new Scanner(System.in);
 					importe = src.nextFloat();
 					importeCorrecto = false;
-				} catch (Exception e) {
+				}catch(NullPointerException e) {
+					System.out.println("Has metido un null!");
+				} catch (InputMismatchException e) {
 					System.out.println("valor incorrecto, introduce un valor correcto,por ejemplo: 123.45");
+				} catch (Exception e) {
+					System.out.println("Que has hecho para que falle?");
 				}
 				
 			} while(importeCorrecto);
