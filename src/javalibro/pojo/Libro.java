@@ -44,6 +44,10 @@ public class Libro implements Imprimible, Vendible {
 		}
 		this.numPaginas = numPaginas;
 	}
+	
+	protected void metodoProtegido() {
+		System.out.println("Soy un metodo protegido");
+	}
 
 	@Override
 	public String toString() {

@@ -29,7 +29,9 @@ public class LibrosRecomendados {
 		
 		System.out.println(".......OTRO EJERCICIO...........");
 		
-		
+		Participante p = new Participante();
+		l.metodoProtegido();
+		le.metodoProtegido();
 	}
 
 }
