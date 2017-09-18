@@ -1,6 +1,18 @@
+package javalibro.pojo;
 import junit.framework.TestCase;
 
 public class ParticipanteTest extends TestCase {
+	
+	public void testEquals() {
+		
+		Participante p1 = new Participante();
+		Participante p2 = new Participante();
+		
+		p1.setNombre("nombre");
+		p2.setNombre("nombre");
+		
+		assertEquals(p1, p2);
+	}
 
 	public void testConstructoVacio() {
 		Participante p = new Participante();
