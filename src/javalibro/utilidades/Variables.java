@@ -1,3 +1,4 @@
+package javalibro.utilidades;
 /*
  * Ejercicio para probar las variables de Java
  */

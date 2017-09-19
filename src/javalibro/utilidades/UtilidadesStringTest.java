@@ -1,3 +1,4 @@
+package javalibro.utilidades;
 import junit.framework.TestCase;
 
 public class UtilidadesStringTest extends TestCase {

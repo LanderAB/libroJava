@@ -1,3 +1,4 @@
+package javalibro.utilidades;
 
 public class UtilidadesString {
 
