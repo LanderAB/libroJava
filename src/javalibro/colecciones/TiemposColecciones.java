@@ -16,14 +16,7 @@ import javalibro.pojo.Persona;
 
 public class TiemposColecciones {
 	
-
-	public static void main(String[] args) {
-		
-		//Recorrer
-		//ArrayList
-		
-		long tInicio = System.currentTimeMillis();
-		
+	public static ArrayList<Persona> meterArrayList(String ruta){
 		String linea = "";
 		int contador = 0;
 		String[] partes = new String[7];
@@ -31,7 +24,7 @@ public class TiemposColecciones {
 		ArrayList<Persona> objArrayList = new ArrayList<Persona>();
 		
 		try {
-			FileReader fr = new FileReader("C:\\desarrollo\\personas.txt");
+			FileReader fr = new FileReader(ruta);
 			BufferedReader br = new BufferedReader(fr);
 			
 			while((linea = br.readLine()) != null) {
@@ -52,6 +45,21 @@ public class TiemposColecciones {
 			e.printStackTrace();
 		}
 		
+		return objArrayList;
+	}
+	
+	
+	
+
+	public static void main(String[] args) {
+		
+		//Recorrer
+		//ArrayList
+		
+		long tInicio = System.currentTimeMillis();
+		
+		ArrayList<Persona> objArrayList = meterArrayList("C:\\desarrollo\\personas.txt");
+		
 		Iterator<Persona> it = objArrayList.iterator();
 		
 		while(it.hasNext()) {
@@ -70,9 +78,9 @@ public class TiemposColecciones {
 		
 		tInicio = System.currentTimeMillis();
 		
-		linea = "";
-		contador = 0;
-		objPersona = null;
+		String linea = "";
+		int contador = 0;
+		Persona objPersona = null;
 		HashMap<String, Persona> objHashMap = new HashMap<String, Persona>();
 		
 		try {
@@ -80,7 +88,7 @@ public class TiemposColecciones {
 			BufferedReader br = new BufferedReader(fr);
 			
 			while((linea = br.readLine()) != null) {
-				partes = linea.split(",");
+				String[] partes = linea.split(",");
 				if(partes.length == 7) {
 					objPersona = new Persona(partes[0], partes[1], partes[2], partes[3], partes[4], partes[5], partes[6]);
 					objHashMap.put(partes[5], objPersona);
