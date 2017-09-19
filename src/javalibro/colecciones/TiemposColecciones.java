@@ -16,10 +16,13 @@ import javalibro.pojo.Persona;
 
 public class TiemposColecciones {
 	
+	final static int CAPACIDAD_ARRAY = 7;
+	final static String DNI_BUSCAR = "26779063W";
+	
 	public static ArrayList<Persona> meterArrayList(String ruta){
 		String linea = "";
 		int contador = 0;
-		String[] partes = new String[7];
+		String[] partes = new String[CAPACIDAD_ARRAY];
 		Persona objPersona = null;
 		ArrayList<Persona> objArrayList = new ArrayList<Persona>();
 		
@@ -29,9 +32,10 @@ public class TiemposColecciones {
 			
 			while((linea = br.readLine()) != null) {
 				partes = linea.split(",");
-				if(partes.length == 7) {
+				if(partes.length == CAPACIDAD_ARRAY) {
 					objPersona = new Persona(partes[0], partes[1], partes[2], partes[3], partes[4], partes[5], partes[6]);
 					objArrayList.add(objPersona);
+					contador++;
 				}
 			}
 			System.out.println("En total hay "+ contador + " personas metidas en el ArrayList");
@@ -51,9 +55,9 @@ public class TiemposColecciones {
 	public static void recorrerArrayList(ArrayList objArrayList) {
 		
 		Iterator<Persona> it = objArrayList.iterator();
-		
+		Persona objPersona = null;
 		while(it.hasNext()) {
-			System.out.println(it.next().toString());
+			objPersona = it.next();
 		}
 	}
 	
@@ -75,7 +79,7 @@ public class TiemposColecciones {
 					contador++;
 				}
 			}
-			System.out.println("En total hay "+ contador + " personas metidas en el ArrayList");
+			System.out.println("En total hay "+ contador + " personas metidas en el HashMap");
 			
 			
 		} catch (FileNotFoundException e) {
@@ -93,25 +97,26 @@ public class TiemposColecciones {
 	public static void recorrerHashMap(HashMap<String, Persona> objHashMap) {
 		
 		Collection coleccion = objHashMap.values();
-		Iterator it =  coleccion.iterator();
-		
+		Iterator<Persona> it =  coleccion.iterator();
+		Persona objPersona = null;
 		while(it.hasNext()) {
-			System.out.println(it.next().toString());
+			objPersona = it.next();
 		}
 		
 	}
 	
 	public static long buscarDniHashMap(HashMap<String, Persona> objHashMap) {
 		
+		long tInicio = System.currentTimeMillis();
 		Collection coleccion = objHashMap.values();
 		Iterator it = coleccion.iterator();
 		
-		long tInicio = System.currentTimeMillis();
-		long tFinal = 0;
 		
+		long tFinal = 0;
+		Persona objPersona2 = null;
 		while(it.hasNext()) {
-			Persona objPersona2 = (Persona) it.next();
-			if(objPersona2.getDni().equals("26779063W")) {
+			objPersona2 = (Persona) it.next();
+			if(objPersona2.getDni().equals(DNI_BUSCAR)) {
 				System.out.println("Encontrado con HashMap" + objPersona2.toString());
 				tFinal = System.currentTimeMillis();
 				break;
@@ -128,7 +133,7 @@ public class TiemposColecciones {
 		Iterator it = objArrayList.iterator();
 		while(it.hasNext()) {
 			Persona objPersona2 = (Persona) it.next();
-			if(objPersona2.getDni().equals("26779063W")) {
+			if(objPersona2.getDni().equals(DNI_BUSCAR)) {
 				System.out.println("Encontrado con ArrayList " + objPersona2.toString());
 				tFinal = System.currentTimeMillis();
 				break;
@@ -172,8 +177,6 @@ public class TiemposColecciones {
 		
 		
 		System.out.println("El tiempo empleado con HashMap es: " + tHashMapRecorrer);
-		
-		System.out.println("El tiempo empleado con ArrayList es : " + tArrayListRecorrer);
 		
 		
 		//Ahora toca buscar por dni 
