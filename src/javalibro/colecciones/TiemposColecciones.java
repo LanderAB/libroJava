@@ -48,43 +48,23 @@ public class TiemposColecciones {
 		return objArrayList;
 	}
 	
-	
-	
-
-	public static void main(String[] args) {
-		
-		//Recorrer
-		//ArrayList
-		
-		long tInicio = System.currentTimeMillis();
-		
-		ArrayList<Persona> objArrayList = meterArrayList("C:\\desarrollo\\personas.txt");
+	public static void recorrerArrayList(ArrayList objArrayList) {
 		
 		Iterator<Persona> it = objArrayList.iterator();
 		
 		while(it.hasNext()) {
 			System.out.println(it.next().toString());
 		}
-		
-		long tFinal = System.currentTimeMillis();
-		long tArrayListRecorrer = tFinal - tInicio;
-		System.out.println("El tiempo empleado con ArrayList es: " + (tArrayListRecorrer));
-		
-		
-		//Cambio de Array
-		//HashMap
-		
-		
-		
-		tInicio = System.currentTimeMillis();
-		
+	}
+	
+	public static HashMap<String, Persona> meterHashMap(String ruta){
 		String linea = "";
 		int contador = 0;
 		Persona objPersona = null;
 		HashMap<String, Persona> objHashMap = new HashMap<String, Persona>();
 		
 		try {
-			FileReader fr = new FileReader("C:\\desarrollo\\personas.txt");
+			FileReader fr = new FileReader(ruta);
 			BufferedReader br = new BufferedReader(fr);
 			
 			while((linea = br.readLine()) != null) {
@@ -105,15 +85,92 @@ public class TiemposColecciones {
 			System.out.println("Error al leer la línea");
 			e.printStackTrace();
 		}
+		
+		
+		return objHashMap;
+	}
+	
+	public static void recorrerHashMap(HashMap<String, Persona> objHashMap) {
+		
 		Collection coleccion = objHashMap.values();
-		it =  coleccion.iterator();
+		Iterator it =  coleccion.iterator();
 		
 		while(it.hasNext()) {
 			System.out.println(it.next().toString());
 		}
 		
+	}
+	
+	public static long buscarDniHashMap(HashMap<String, Persona> objHashMap) {
+		
+		Collection coleccion = objHashMap.values();
+		Iterator it = coleccion.iterator();
+		
+		long tInicio = System.currentTimeMillis();
+		long tFinal = 0;
+		
+		while(it.hasNext()) {
+			Persona objPersona2 = (Persona) it.next();
+			if(objPersona2.getDni().equals("26779063W")) {
+				System.out.println("Encontrado con HashMap" + objPersona2.toString());
+				tFinal = System.currentTimeMillis();
+				break;
+			}
+		}
+		
+		return tFinal - tInicio;
+	}
+	
+	public static long buscarDniArrayList(ArrayList<Persona> objArrayList) {
+		long tInicio = System.currentTimeMillis();
+		long tFinal = 0;
+		
+		Iterator it = objArrayList.iterator();
+		while(it.hasNext()) {
+			Persona objPersona2 = (Persona) it.next();
+			if(objPersona2.getDni().equals("26779063W")) {
+				System.out.println("Encontrado con ArrayList " + objPersona2.toString());
+				tFinal = System.currentTimeMillis();
+				break;
+			}
+		}
+		
+		return tFinal - tInicio;
+	}
+	
+	
+	
+
+	public static void main(String[] args) {
+		
+		//Recorrer
+		//ArrayList
+		
+		long tInicio = System.currentTimeMillis();
+		
+		ArrayList<Persona> objArrayList = meterArrayList("C:\\desarrollo\\personas.txt");
+		
+		recorrerArrayList(objArrayList);
+		
+		long tFinal = System.currentTimeMillis();
+		long tArrayListRecorrer = tFinal - tInicio;
+		System.out.println("El tiempo empleado con ArrayList es: " + (tArrayListRecorrer));
+		
+		
+		//Cambio de Array
+		//HashMap
+		
+		tInicio = System.currentTimeMillis();
+		
+		HashMap<String, Persona> objHashMap = meterHashMap("C:\\desarrollo\\personas.txt");
+		
+		recorrerHashMap(objHashMap);
+		
+		
 		tFinal = System.currentTimeMillis();
 		long tHashMapRecorrer = tFinal - tInicio;
+		
+		
 		System.out.println("El tiempo empleado con HashMap es: " + tHashMapRecorrer);
 		
 		System.out.println("El tiempo empleado con ArrayList es : " + tArrayListRecorrer);
@@ -122,40 +179,13 @@ public class TiemposColecciones {
 		//Ahora toca buscar por dni 
 		//HashMap
 		
-		coleccion = objHashMap.values();
-		it = coleccion.iterator();
+		long tHashMapBuscar = buscarDniHashMap(objHashMap);
 		
-		tInicio = System.currentTimeMillis();
-		
-		while(it.hasNext()) {
-			Persona objPersona2 = it.next();
-			if(objPersona2.getDni().equals("26779063W")) {
-				System.out.println("Encontrado con HashMap" + objPersona2.toString());
-				tFinal = System.currentTimeMillis();
-				break;
-			}
-		}
-		
-		long tHashMapBuscar = tFinal - tInicio;
 		
 		//Cambio 
-		//ArrayList
+		//ArrayList	
 		
-		
-		
-		tInicio = System.currentTimeMillis();
-		
-		it = objArrayList.iterator();
-		while(it.hasNext()) {
-			Persona objPersona2 = it.next();
-			if(objPersona2.getDni().equals("26779063W")) {
-				System.out.println("Encontrado con ArrayList " + objPersona2.toString());
-				tFinal = System.currentTimeMillis();
-				break;
-			}
-		}
-		
-		long tArrayListBuscar = tFinal - tInicio;
+		long tArrayListBuscar = buscarDniArrayList(objArrayList);
 		
 		System.out.println("El tiempo que ha tardado en buscar ARRAYLIST ha sido de : " + tArrayListBuscar);
 		System.out.println("El tiempo que ha tardado en buscar HASHMAP ha sido de : " + tHashMapBuscar);

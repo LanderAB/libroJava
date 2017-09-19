@@ -1,6 +1,7 @@
 package javalibro.pojo;
 
 public class Persona {
+	
 	private String nombre; 
 	private String apellido;
 	private String calle;
@@ -8,6 +9,7 @@ public class Persona {
 	private String email;
 	private String dni;
 	private String oficio;
+	
 	public String getNombre() {
 		return nombre;
 	}
