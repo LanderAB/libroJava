@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.omg.Messaging.SyncScopeHelper;
 
+import javalibro.excepciones.PersonaException;
 import javalibro.pojo.Persona;
 
 public class TiemposColecciones {
@@ -33,7 +34,7 @@ public class TiemposColecciones {
 			while((linea = br.readLine()) != null) {
 				partes = linea.split(",");
 				if(partes.length == CAPACIDAD_ARRAY) {
-					objPersona = new Persona(partes[0], partes[1], partes[2], partes[3], partes[4], partes[5], partes[6]);
+					objPersona = new Persona(partes[0], partes[1], partes[2], Integer.parseInt(partes[3]), partes[4], partes[5], partes[6]);
 					objArrayList.add(objPersona);
 					contador++;
 				}
@@ -46,6 +47,12 @@ public class TiemposColecciones {
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("Error al leer la línea");
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonaException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -74,7 +81,7 @@ public class TiemposColecciones {
 			while((linea = br.readLine()) != null) {
 				String[] partes = linea.split(",");
 				if(partes.length == 7) {
-					objPersona = new Persona(partes[0], partes[1], partes[2], partes[3], partes[4], partes[5], partes[6]);
+					objPersona = new Persona(partes[0], partes[1], partes[2], Integer.parseInt(partes[3]), partes[4], partes[5], partes[6]);
 					objHashMap.put(partes[5], objPersona);
 					contador++;
 				}
@@ -87,6 +94,12 @@ public class TiemposColecciones {
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("Error al leer la línea");
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonaException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

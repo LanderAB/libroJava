@@ -1,11 +1,14 @@
 package javalibro.pojo;
 
+import javalibro.excepciones.PersonaException;
+import javalibro.utilidades.Validaciones;
+
 public class Persona {
 	
 	private String nombre; 
 	private String apellido;
 	private String calle;
-	private String numero;
+	private int edad;
 	private String email;
 	private String dni;
 	private String oficio;
@@ -28,22 +31,38 @@ public class Persona {
 	public void setCalle(String calle) {
 		this.calle = calle;
 	}
-	public String getNumero() {
-		return numero;
+	public int getEdad() {
+		return edad;
 	}
-	public void setNumero(String numero) {
-		this.numero = numero;
+	/**
+	 * Setea la edad de la persona
+	 * @param edad int años de la persona
+	 * @throws PersonaException edad < 18
+	 */
+	public void setEdad(int edad) throws PersonaException {
+		if(edad < 18) {
+			throw new PersonaException(PersonaException.MSG_EDAD_MENOR);
+		}
+		this.edad = edad;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+	public void setEmail(String email) throws PersonaException {
+		
+		if(!Validaciones.email(email)) {
+			throw new PersonaException(PersonaException.MSG_EMAIL_ERROR);
+		}
 		this.email = email;
 	}
 	public String getDni() {
 		return dni;
 	}
-	public void setDni(String dni) {
+	public void setDni(String dni) throws PersonaException {
+		
+		if(!Validaciones.dni(dni)) {
+			throw new PersonaException(PersonaException.MSG_DNI_ERROR);
+		}
 		this.dni = dni;
 	}
 	public String getOficio() {
@@ -52,20 +71,23 @@ public class Persona {
 	public void setOficio(String oficio) {
 		this.oficio = oficio;
 	}
-	public Persona(String nombre, String apellido, String calle, String numero, String email, String dni,
-			String oficio) {
+	public Persona(String nombre, String apellido, String calle, int edad, String email, String dni,
+			String oficio) throws PersonaException {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.calle = calle;
-		this.numero = numero;
-		this.email = email;
-		this.dni = dni;
+		//this.edad = edad;
+		setEdad(edad);
+		//this.email = email;
+		setEmail(email);
+		//this.dni = dni;
+		setDni(dni);
 		this.oficio = oficio;
 	}
 	@Override
 	public String toString() {
-		return "Personas [nombre=" + nombre + ", apellido=" + apellido + ", calle=" + calle + ", numero=" + numero
+		return "Personas [nombre=" + nombre + ", apellido=" + apellido + ", calle=" + calle + ", edad=" + edad
 				+ ", email=" + email + ", dni=" + dni + ", oficio=" + oficio + "]";
 	}
 	

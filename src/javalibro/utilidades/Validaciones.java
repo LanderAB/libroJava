@@ -12,7 +12,7 @@ public class Validaciones {
 	 * @param email
 	 * @return true si es valido, false en caso contrario
 	 */
-	static boolean email(String email) {
+	public static boolean email(String email) {
 		boolean resul = false;
 		if(email != null) {
 			
@@ -24,32 +24,31 @@ public class Validaciones {
 		return resul;
 	}
 	
-	static boolean dni(String dni) {
+	public static boolean dni(String dni) {
+		
 		boolean resul = false;
 		
 		
 	         
-	        String letraMayuscula = ""; //Guardaremos la letra introducida en formato mayúscula
+	    String letraMayuscula = ""; //Guardaremos la letra introducida en formato mayúscula
 	             
-	        // Aquí excluimos cadenas distintas a 9 caracteres que debe tener un dni y también si el último caracter no es una letra
-	        if(dni.length() != 9 || Character.isLetter(dni.charAt(8)) == false ) {
-	            return false;
-	        }
+	    // Aquí excluimos cadenas distintas a 9 caracteres que debe tener un dni y también si el último caracter no es una letra
+	    if(dni.length() != 9 || Character.isLetter(dni.charAt(8)) == false ) {
+	    	return false;
+	    }
 	 
 	         
-	        // Al superar la primera restricción, la letra la pasamos a mayúscula
-	        letraMayuscula = (dni.substring(8)).toUpperCase();
+	    // Al superar la primera restricción, la letra la pasamos a mayúscula
+	    letraMayuscula = (dni.substring(8)).toUpperCase();
 	 
-	        // Por último validamos que sólo tengo 8 dígitos entre los 8 primeros caracteres y que la letra introducida es igual a la de la ecuación
-	        // Llamamos a los métodos privados de la clase soloNumeros() y letraDNI()
-	        if(soloNumeros(dni) == true && letraDNI(dni).equals(letraMayuscula)) {
-	            resul = true;
-	        }
-	        else {
-	            resul = false;
-	        }
-	 
-	        
+	    // Por último validamos que sólo tengo 8 dígitos entre los 8 primeros caracteres y que la letra introducida es igual a la de la ecuación
+	    // Llamamos a los métodos privados de la clase soloNumeros() y letraDNI()
+	    if(soloNumeros(dni) == true && letraDNI(dni).equals(letraMayuscula)) {
+	        resul = true;
+	    }
+	    else {
+	        resul = false;
+	    } 
 		
 		return resul;
 	}
