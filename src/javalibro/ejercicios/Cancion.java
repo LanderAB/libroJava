@@ -5,12 +5,22 @@ public class Cancion {
 	private String titulo;
 	private String artista;
 	private String duracion;
+	private long id;
 	
 	public Cancion(String titulo, String artista, String duracion) {
 		super();
+		this.id = -1;
 		this.titulo = titulo;
 		this.artista = artista;
 		this.duracion = duracion;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public Cancion() {
@@ -42,9 +52,11 @@ public class Cancion {
 		this.duracion = duracion;
 	}
 
+	@Override
 	public String toString() {
-		return "Titulo= " + titulo + ", artista= " + artista + ", duracion= " + duracion;
+		return "Cancion [titulo=" + titulo + ", artista=" + artista + ", duracion=" + duracion + ", id=" + id + "]";
 	}
+
 	
 	
 	
