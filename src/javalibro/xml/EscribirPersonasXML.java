@@ -62,7 +62,7 @@ public class EscribirPersonasXML {
 	public static final int PARTE_DNI = 5;
 	public static final int PARTE_ROL = 6;
 	
-	public static final String RUTA_FICHERO = "C:\\desarrollo\\personas.txt";
+	public static final String RUTA_FICHERO = "C:\\desarrollo\\personas_little.txt";
 	/**
 	 * Metodo que recoge todos los registros linea a linea y los inserta en un arrayList
 	 * @param ruta String donde esta contenido el fichero .txt
@@ -120,14 +120,13 @@ public class EscribirPersonasXML {
 			//crear nodo raiz
 			Element rootElement = doc.createElement("personas");
 	        doc.appendChild(rootElement); 
-	        
-	        
-	        
-	        Element ePersona = doc.createElement("persona");
+	         
 	        
 	        //TODO bucle para todas las personas del fichero
 	        for(int i = 0; i < arrayPersona.size(); i++) {
 	        	if(arrayPersona.get(i) != null) {
+	        		Element ePersona = doc.createElement("persona");
+	        		
 	        		Element eNombre = doc.createElement("nombre");
 		        	eNombre.setTextContent(arrayPersona.get(i).getNombre());
 		        	ePersona.appendChild(eNombre);
@@ -155,13 +154,15 @@ public class EscribirPersonasXML {
 		        	Element eRol = doc.createElement("rol");
 		        	eRol.setTextContent(arrayPersona.get(i).getOficio());
 		        	ePersona.appendChild(eRol); 
+		        	
+		        	//añadir Elementos Persona al nodo raiz 	
+			        rootElement.appendChild(ePersona);
 	        	}
 	        		
 	        	
 	        }
 	        
-	        //añadir Elementos Persona al nodo raiz 	
-	        rootElement.appendChild(ePersona);
+	        
 			
 	        
 	        //guardar en fichero
